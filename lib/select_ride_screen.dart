@@ -33,6 +33,97 @@ class SelectRideScreen extends StatefulWidget {
 
 class _SelectRideScreenState extends State<SelectRideScreen> {
   int _selectedIndex = 1; // Default to Comfort
+  String _paymentMethod = '•••• 4242';
+  IconData _paymentIcon = Icons.credit_card;
+
+  void _showPaymentSelection() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: const Color(0xff121414),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(24.0),
+          topRight: Radius.circular(24.0),
+        ),
+      ),
+      builder: (BuildContext context) {
+        return Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
+          decoration: const BoxDecoration(
+            color: Color(0xff121414),
+            border: Border(
+              top: BorderSide(color: Color(0xff434656), width: 1.0),
+            ),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Container(
+                  width: 40,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: const Color(0xffc4c5d9).withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'Select Payment Method',
+                style: GoogleFonts.inter(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(height: 16),
+              _buildPaymentOptionTile(
+                icon: Icons.credit_card,
+                label: '•••• 4242',
+              ),
+              _buildPaymentOptionTile(
+                icon: Icons.apple,
+                label: 'Apple Pay',
+              ),
+              _buildPaymentOptionTile(
+                icon: Icons.payment,
+                label: 'Google Pay',
+              ),
+              _buildPaymentOptionTile(
+                icon: Icons.local_atm,
+                label: 'Cash',
+              ),
+              const SizedBox(height: 16),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildPaymentOptionTile({required IconData icon, required String label}) {
+    final isSelected = _paymentMethod == label;
+    return ListTile(
+      leading: Icon(icon, color: isSelected ? const Color(0xff2e5bff) : const Color(0xffc4c5d9)),
+      title: Text(
+        label,
+        style: GoogleFonts.inter(
+          color: isSelected ? const Color(0xff2e5bff) : Colors.white,
+          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+        ),
+      ),
+      trailing: isSelected ? const Icon(Icons.check, color: Color(0xff2e5bff)) : null,
+      onTap: () {
+        setState(() {
+          _paymentMethod = label;
+          _paymentIcon = icon;
+        });
+        Navigator.pop(context);
+      },
+    );
+  }
 
   final List<RideOption> _options = const [
     RideOption(
@@ -282,10 +373,10 @@ class _SelectRideScreenState extends State<SelectRideScreen> {
                     children: [
                       Row(
                         children: [
-                          const Icon(Icons.credit_card, color: Color(0xffc4c5d9)),
+                          Icon(_paymentIcon, color: const Color(0xffc4c5d9)),
                           const SizedBox(width: 8),
                           Text(
-                            '•••• 4242',
+                            _paymentMethod,
                             style: GoogleFonts.inter(
                               fontSize: 14,
                               color: const Color(0xffc4c5d9),
@@ -294,7 +385,7 @@ class _SelectRideScreenState extends State<SelectRideScreen> {
                         ],
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: _showPaymentSelection,
                         child: Text(
                           'Change',
                           style: GoogleFonts.inter(
