@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RideShare - Ride Selection</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#8e90a2",
+                        "on-error": "#690005",
+                        "surface": "#121414",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed": "#001356",
+                        "on-background": "#e2e2e2",
+                        "inverse-primary": "#124af0",
+                        "surface-container-low": "#1a1c1c",
+                        "primary-container": "#2e5bff",
+                        "primary": "#b8c3ff",
+                        "on-primary-fixed-variant": "#0035be",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "on-primary-container": "#efefff",
+                        "secondary-fixed": "#e5e2e1",
+                        "tertiary": "#c8c6c5",
+                        "surface-container": "#1e2020",
+                        "on-secondary-container": "#bab8b7",
+                        "on-primary": "#002388",
+                        "surface-dim": "#121414",
+                        "outline-variant": "#434656",
+                        "inverse-on-surface": "#2f3131",
+                        "secondary-container": "#4a4949",
+                        "primary-fixed": "#dde1ff",
+                        "on-secondary": "#313030",
+                        "inverse-surface": "#e2e2e2",
+                        "on-secondary-fixed-variant": "#474646",
+                        "on-tertiary-container": "#f3f0ef",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-tertiary-fixed": "#1b1b1c",
+                        "on-surface": "#e2e2e2",
+                        "surface-bright": "#37393a",
+                        "surface-variant": "#333535",
+                        "surface-container-high": "#282a2b",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "surface-tint": "#b8c3ff",
+                        "secondary": "#c8c6c5",
+                        "tertiary-container": "#6e6d6d",
+                        "error": "#ffb4ab",
+                        "on-surface-variant": "#c4c5d9",
+                        "surface-container-highest": "#333535",
+                        "on-tertiary": "#303030",
+                        "error-container": "#93000a",
+                        "tertiary-fixed": "#e5e2e1",
+                        "primary-fixed-dim": "#b8c3ff",
+                        "background": "#121414",
+                        "surface-container-lowest": "#0c0f0f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "bottom-sheet-peak": "280px",
+                        "unit": "4px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "margin-mobile": "20px",
+                        "md": "16px",
+                        "gutter": "16px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "title-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface h-screen w-full flex flex-col overflow-hidden select-none antialiased relative">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-transparent flex justify-between items-center px-margin-mobile py-md w-full">
+<button class="flex items-center justify-center p-sm rounded-full bg-surface-container/80 backdrop-blur-sm text-primary hover:bg-surface-variant/20 transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary text-center flex-1 drop-shadow-md">RideShare</h1>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-surface-container/50 bg-surface-variant/50 backdrop-blur-sm hover:border-primary transition-colors duration-200 cursor-pointer shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="A high-contrast profile portrait of a confident young professional against a dark, moody cityscape background with electric blue rim lighting. The image should be sharp, minimalist, and premium in aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAO9V8o5ZEUnAUVDMYekaYs9bBRJAokLyWHg5kXstPiHnxRXcxTj2paLGHTEEjQDuGxgKAiX-FEQEuUY3WMjzGTh-HZn8B7u4o959qg6R2KBOhhHyGJSecPfJ1CwGaNxBUIT7g8z1RGgRgGvxU1o8820SPJ0w4JxUqRVjWn3LFTJNAkjlbA3iXCuHVKSAV20FOWyVhsNr1IqtsRAJCv2xfhua4UkJ1DWm5r3xbY49XUuum3l3UD0WpE"/>
+</div>
+</header>
+<!-- Map Background -->
+<main class="flex-1 relative w-full h-full">
+<div class="absolute inset-0 w-full h-full bg-surface-container-low" data-alt="A stylized, high-contrast dark mode map view of a major metropolitan city at night. The roads are dark grey, with subtle neon blue highlights indicating traffic flow. The aesthetic is clean, minimalist, and highly functional, resembling a premium digital cockpit display." data-location="New York City" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDkTe1Tceoo4qR6aGDL2as8FU4123X1CSJZcl0AAb6ZIawR-2PhNMtIo_FJ9qP8s7gU6ap79GWUVnXtl48GCmLQBy72Fwzo-3JpTwqAPOvlpq2b71I51TqdahZ-enSYxbm_SUJEbD_wlxjCcMjAYMiAsUbr8YV2Skz4F4eGm-LY2OayGRjOblu0ZNnkpejOFm-ZCwrVqEcGibFC2kGPOuClsVkNwttO8L-5z8hzfod2z3B7B1lNOTyP')"></div>
+<!-- Simulated Route Overlay for effect -->
+<div class="absolute inset-0 pointer-events-none flex items-center justify-center">
+<!-- Simulated route line (abstract) -->
+<svg class="w-full h-full opacity-60" preserveaspectratio="none" viewbox="0 0 100 100">
+<path d="M 20 80 Q 40 40 80 20" fill="none" stroke="#2e5bff" stroke-linecap="round" stroke-width="0.8" style="filter: drop-shadow(0 0 4px #2e5bff);"></path>
+<!-- Pickup -->
+<circle cx="20" cy="80" fill="#ffffff" r="1.5" stroke="#2e5bff" stroke-width="0.5"></circle>
+<circle cx="20" cy="80" fill="#2e5bff" r="0.5"></circle>
+<!-- Dropoff -->
+<path d="M 80 20 L 78.5 16 L 81.5 16 Z" fill="#2e5bff"></path>
+</svg>
+</div>
+</main>
+<!-- Bottom Sheet (Ride Selection) -->
+<div class="absolute bottom-0 w-full bg-surface rounded-t-3xl shadow-[0px_-8px_24px_rgba(0,0,0,0.5)] flex flex-col z-40 transition-transform duration-300 ease-in-out pb-4">
+<!-- Drag Handle -->
+<div class="w-full flex justify-center py-sm cursor-grab active:cursor-grabbing">
+<div class="w-12 h-1 bg-on-surface-variant/50 rounded-full"></div>
+</div>
+<div class="px-margin-mobile flex flex-col gap-sm overflow-y-auto max-h-[60vh] pb-24">
+<h2 class="font-title-md text-title-md text-on-surface mb-sm">Choose a ride</h2>
+<!-- Ride Option 1: Economy -->
+<div class="group flex items-center justify-between p-md rounded-xl bg-surface-container border border-outline-variant hover:border-primary-container cursor-pointer transition-all duration-200">
+<div class="flex items-center gap-md">
+<img alt="Economy car" class="w-16 h-12 object-contain drop-shadow-lg" data-alt="A minimalist, side-view 3D illustration of a standard compact economy car in dark grey. The rendering is sleek, set against a dark background with a soft, ambient electric blue underglow. Premium, clean aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2vL0SV8RJxtoKXuej2FPnSvlrW_U4qu-k4Tm00xwaDuVj9k6GMX6Y8Hx4pWOhBKZX07zTBAcDLtmRrA2UYNnGjFoAyK-T9Ye5o4S_hlkIy8zO454P32etJ2NJGfzf2XxB0s_E7jPJJh0dkwQSBcVEQAVDkxEvyustzwlfOv1WD9GhYLZss053tLwtBcNTKyDIAGfWWX0efU_0WrEAF4Rrb1G190ZLyH1LMPP_XXAMjaFqjQfrY844"/>
+<div class="flex flex-col">
+<div class="flex items-center gap-xs">
+<span class="font-title-md text-title-md text-on-surface">Economy</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant" data-icon="person">person</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">4</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">3 min away • 12:45 PM</span>
+</div>
+</div>
+<div class="font-title-md text-title-md text-on-surface font-bold">
+                    $12.50
+                </div>
+</div>
+<!-- Ride Option 2: Comfort (Active) -->
+<div class="group flex items-center justify-between p-md rounded-xl bg-surface-container border-2 border-primary-container shadow-[0_0_12px_rgba(46,91,255,0.15)] cursor-pointer transition-all duration-200 relative overflow-hidden">
+<div class="absolute inset-0 bg-primary-container/5 pointer-events-none"></div>
+<div class="flex items-center gap-md relative z-10">
+<img alt="Comfort car" class="w-16 h-12 object-contain drop-shadow-lg" data-alt="A minimalist, side-view 3D illustration of a mid-size SUV in metallic dark grey. The rendering is sleek, set against a dark background with a soft, ambient electric blue underglow. Premium, clean aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBh-yHI3TQbkVQx4BFSB6iX8UYkNyBpdf85EPBQx9E0PSrHOEOGkwjSVUTYbrvKPoVLsRHlZIBP0LPboEfcaWBpUtqP9k9mlnC_rPZATYxuq7bd07cK9OoOFtisyrNL9sRliPpheo_rf-f5TMrTpGXxQPbAs3bjY5eSD1vK4fwRVcGxYwiOB2AgZbemT9SQDVHviRmPP4_vjicnW4bcHSVjoVhbe1L35sle5njZVGN7Mu7bCBgnLyuP"/>
+<div class="flex flex-col">
+<div class="flex items-center gap-xs">
+<span class="font-title-md text-title-md text-primary">Comfort</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant" data-icon="person">person</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">4</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">4 min away • Extra legroom</span>
+</div>
+</div>
+<div class="font-title-md text-title-md text-primary font-bold relative z-10">
+                    $18.00
+                </div>
+</div>
+<!-- Ride Option 3: Premium -->
+<div class="group flex items-center justify-between p-md rounded-xl bg-surface-container border border-outline-variant hover:border-primary-container cursor-pointer transition-all duration-200">
+<div class="flex items-center gap-md">
+<img alt="Premium car" class="w-16 h-12 object-contain drop-shadow-lg" data-alt="A minimalist, side-view 3D illustration of a luxury sedan in deep black. The rendering is highly polished and sleek, set against a dark background with a prominent, sharp electric blue underglow highlighting its silhouette. Ultra-premium aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAi4tZn11JC--v7IG80ld4RBwrXo-0qy_s3y6GBBZ3LZHL-UIB7a0PvxMfWiHV37BE8EJ3DTaI1Z4F3AYUFs3dY2JNV28GqtBceXrw1lCG-6pJ46is8Zfd8vLY9S02HT_uVLJVzZXomJz-y3EHgGpo-vh3Qr4MRZ7P-Q3irXbimWVw8rHsalV3CIBjg9uYoifXz77DsYMAaYToEf-kjZOKgDJbOyZw3kx32sD_JBi20OvWniFR31L4J"/>
+<div class="flex flex-col">
+<div class="flex items-center gap-xs">
+<span class="font-title-md text-title-md text-on-surface">Premium</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant" data-icon="person">person</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">4</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">6 min away • Top-rated</span>
+</div>
+</div>
+<div class="font-title-md text-title-md text-on-surface font-bold">
+                    $25.00
+                </div>
+</div>
+<div class="flex items-center justify-between px-xs py-sm border-t border-outline-variant/30 mt-sm">
+<div class="flex items-center gap-sm text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="credit_card">credit_card</span>
+<span class="font-body-sm text-body-sm">•••• 4242</span>
+</div>
+<button class="font-label-bold text-label-bold text-primary hover:text-primary-fixed transition-colors">Change</button>
+</div>
+</div>
+<!-- Confirm Button Area -->
+<div class="absolute bottom-0 left-0 w-full p-margin-mobile bg-gradient-to-t from-surface via-surface to-transparent pt-xl pb-6">
+<button class="w-full bg-primary-container text-on-primary-container font-title-md text-title-md font-bold py-md rounded-xl shadow-[0_4px_16px_rgba(46,91,255,0.4)] hover:bg-primary-container/90 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-sm">
+                Confirm Comfort
+            </button>
+</div>
+</div>
+</body></html>
