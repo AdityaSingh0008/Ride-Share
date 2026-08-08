@@ -1,0 +1,4 @@
+{
+  "buildCommand": "echo 'Deploying prebuilt web files...'",
+  "outputDirectory": "build/web"
+}
