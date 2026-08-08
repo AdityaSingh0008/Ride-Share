@@ -3,10 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
   final VoidCallback onDestinationSelected;
+  final VoidCallback onActivityTap;
+  final VoidCallback onAccountTap;
 
   const HomeScreen({
     Key? key,
     required this.onDestinationSelected,
+    required this.onActivityTap,
+    required this.onAccountTap,
   }) : super(key: key);
 
   @override
@@ -190,9 +194,9 @@ class HomeScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    _buildNavItem(Icons.local_taxi, 'Ride', true),
-                    _buildNavItem(Icons.history, 'Activity', false),
-                    _buildNavItem(Icons.person, 'Account', false),
+                    _buildNavItem(Icons.local_taxi, 'Ride', true, () {}),
+                    _buildNavItem(Icons.history, 'Activity', false, onActivityTap),
+                    _buildNavItem(Icons.person, 'Account', false, onAccountTap),
                   ],
                 ),
               ),
@@ -236,10 +240,10 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildNavItem(IconData icon, String label, bool isActive) {
+  Widget _buildNavItem(IconData icon, String label, bool isActive, VoidCallback onTap) {
     final color = isActive ? const Color(0xff2e5bff) : const Color(0xffc4c5d9);
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       child: SizedBox(
         width: 80,
         child: Column(

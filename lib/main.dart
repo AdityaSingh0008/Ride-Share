@@ -4,6 +4,8 @@ import 'custom_map.dart';
 import 'home_screen.dart';
 import 'select_ride_screen.dart';
 import 'live_tracking_screen.dart';
+import 'activity_screen.dart';
+import 'account_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,6 +52,8 @@ enum AppState {
   home,
   selectRide,
   liveTracking,
+  activity,
+  account,
 }
 
 class MainNavigationCoordinator extends StatefulWidget {
@@ -141,6 +145,8 @@ class _MainNavigationCoordinatorState extends State<MainNavigationCoordinator>
         return HomeScreen(
           key: const ValueKey('HomeScreen'),
           onDestinationSelected: () => _navigateTo(AppState.selectRide),
+          onActivityTap: () => _navigateTo(AppState.activity),
+          onAccountTap: () => _navigateTo(AppState.account),
         );
       case AppState.selectRide:
         return SelectRideScreen(
@@ -152,6 +158,18 @@ class _MainNavigationCoordinatorState extends State<MainNavigationCoordinator>
         return LiveTrackingScreen(
           key: const ValueKey('LiveTrackingScreen'),
           onCancel: () => _navigateTo(AppState.selectRide),
+        );
+      case AppState.activity:
+        return ActivityScreen(
+          key: const ValueKey('ActivityScreen'),
+          onRideTap: () => _navigateTo(AppState.home),
+          onAccountTap: () => _navigateTo(AppState.account),
+        );
+      case AppState.account:
+        return AccountScreen(
+          key: const ValueKey('AccountScreen'),
+          onRideTap: () => _navigateTo(AppState.home),
+          onActivityTap: () => _navigateTo(AppState.activity),
         );
     }
   }
